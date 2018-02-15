@@ -1,0 +1,111 @@
+---
+title: "BayesianJournal"
+author: "Shrankhala Jain"
+date: "2/14/2018"
+output:
+  word_document: default
+  pdf_document: default
+  html_document: default
+---
+
+# Discrete Probability Distribution using Bayesian, which uses subjective probability which describes beliefs about unknown quantities.And the method used is through probability distribution. a Spinner is used as a example which is divided into several regions and opt for various outcomes.
+#Package Used- "TeachBayes" (available on CRAN).The Special functions for Bayes'rule are-  Learning baout a proportion and a mean and comparing two proportions.
+
+
+```{r setup, include=FALSE}
+library (TeachBayes)
+# Define a spinner with five regions: regions
+regions <- c(2,2,2,2,2)
+spinner_plot(regions)
+spinner_probs(regions)
+
+
+# Plot the spinner
+spinner_plot(regions)
+
+# Show the probability distribution
+spinner_probs(regions)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+# Bayes'rule identifies possible models and contains prior probabilities. For executing collect the data , think of likelihood an dchance of getting the data for each model. Then find the posterior probability for finding the knowledge about model. 
+# Define a spinner with five regions: regions
+regions <- c(2,2,2,2,2)
+spinner_plot(regions)
+spinner_probs(regions)
+
+
+# Plot the spinner
+spinner_plot(regions)
+
+# Show the probability distribution
+spinner_probs(regions)
+# Define new spinner: regions
+regions <- c(2, 2, 4)
+
+# Simulation 1000 spins: spins
+spins <- spinner_data(regions, 1000)
+
+# Graph the spin data using bar_plot()
+bar_plot(spins)
+
+# Construct frequency table of spins
+table(spins)
+
+# Find fraction of spins equal to 2
+mean(spins == 2)
+
+# Find mean spin value
+mean(spins)
+
+
+
+# Create the vector of models: Model
+Model <- c("Spinner A", "Spinner B")
+
+# Define the vector of prior probabilities: Prior
+Prior <- c(1/2, 1/2)
+
+# Define the vector of likelihoods: Likelihood
+Likelihood <- c(1/2, 1/6)
+
+# Make a data frame with variables Model, Prior, Likelihood: bayes_df
+bayes_df <- data.frame(Model, Prior, Likelihood)
+
+# Compute the posterior probabilities
+bayesian_crank(bayes_df)
+
+bayes_df
+prior_post_plot
+prior_post_plot (bayes_df)
+# Display the vector of models: Model
+Model <- c("Spinner A", "Spinner B")
+
+# Define the vector of prior probabilities: Prior
+Prior <- c(0.75, 0.25)
+
+# Define the vector of likelihoods: Likelihood
+Likelihood <- c(1/2, 1/6)
+
+# Make a data frame with variables Model, Prior, Likelihood: bayes_df
+bayes_df <- data.frame(Model, Prior, Likelihood)
+
+# Compute the posterior probabilities
+bayesian_crank(bayes_df)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
